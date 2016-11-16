@@ -15,7 +15,7 @@ public class OutputHTML {
 			pw.println("<div style='overflow:visible'>");
 			pw.println("<div style='height:100%;z-index:1;overflow:auto;'>");
 			while( (message = reader.readLine()) != null){
-				pw.print(("000"+String.valueOf(i)).replaceAll("^.*(.{4})$","$1")+": ");//¼ÓÈëĞĞºÅ
+				pw.print(("000"+String.valueOf(i)).replaceAll("^.*(.{4})$","$1")+": ");//åŠ å…¥è¡Œå·
 				i++;
 				lineType=getLineType(message);
 				switch(lineType){
@@ -42,8 +42,9 @@ public class OutputHTML {
 	private static void outHead(PrintWriter pw){
 		pw.println("<html>");
 		pw.println("<head>");
+		pw.println("<meta charset='utf-8'>");
 		pw.println("<title>");
-		pw.println("×Ö½ÚÂë²é¿´");
+		pw.println("å­—èŠ‚ç æŸ¥çœ‹");
 		pw.println("</title>");
 		pw.println("</head>");
 		pw.println("<body>");
@@ -60,7 +61,7 @@ public class OutputHTML {
 	}
 	private static  LineType getLineType(String line){
 		LineType lineType=null;
-		if(Pattern.matches("^ +\\d+:.*",line)){//¸ÃĞĞÊÇÖ¸ÁîĞĞ
+		if(Pattern.matches("^ +\\d+:.*",line)){//è¯¥è¡Œæ˜¯æŒ‡ä»¤è¡Œ
 			lineType=LineType.INSTRUCT;
 		}else{
 			lineType=LineType.OTHER;
@@ -78,7 +79,7 @@ public class OutputHTML {
 	
 	private static void bindEvent(PrintWriter pw){
 		pw.println("<script type='text/javascript'>");
-		pw.println(getJSON());//°ïÖúĞÅÏ¢
+		pw.println(getJSON());//å¸®åŠ©ä¿¡æ¯
 		pw.println("function instructHelpOnmouseover(e){");
 		pw.println("var showObj=info.instructInfo[e.id]");
 		pw.print("var showHTML=\"<table border='1'>");
@@ -104,7 +105,7 @@ public class OutputHTML {
 		pw.println("</script>");
 	}
 	
-	//µÃµ½°ïÖúĞÅÏ¢µÄjs¶ÔÏó×Ö·û´®
+	//å¾—åˆ°å¸®åŠ©ä¿¡æ¯çš„jså¯¹è±¡å­—ç¬¦ä¸²
 	private static String getJSON(){
 		FiveTuple<String,String,String,String,String> fiveTupe=null;
 		StringBuilder str=new StringBuilder();
@@ -123,6 +124,7 @@ public class OutputHTML {
 			try{
 				str.append("_");
 				str.append(Integer.parseInt(fiveTupe.opcode, 16));
+//				str.append(fiveTupe.opcode);
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
