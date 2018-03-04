@@ -1,4 +1,4 @@
-package com.xwd.studyjavainstruct;
+package com.xwd.study.javainstruct.test;
 
 public class Test {
 
